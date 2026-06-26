@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Month Play With Data</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+        }
+
+        .btn {
+            width: 250px;
+            height: 160px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            transition: .3s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+        }
+
+        .process {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+
+        .calendar {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+        }
+
+        .btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, .18);
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        footer span {
+            color: #60a5fa;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>📊 1 Month Play With Data</h1>
+        <p>Choose one option to continue</p>
+    </header>
+
+    <div class="container">
+
+        <button class="btn process" onclick="navigateTo('process')">
+            ⚙️<br><br>
+            Process
+        </button>
+
+        <button class="btn calendar" onclick="navigateTo('calendar')">
+            📅<br><br>
+            Calendar
+        </button>
+
+    </div>
+
+    <footer>
+        Developed by <span>Sufal</span>
+    </footer>
+
+    <script>
+        function navigateTo(page) {
+            if (page === 'process') {
+                window.location.href = "process.html";
+            } else if (page === 'calendar') {
+                window.location.href = "project.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

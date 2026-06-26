@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Analytics Project Roadmap</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8ff;
+            color: #1f2937;
+            transition: 0.3s;
+        }
+
+        body.dark {
+            background: #0f172a;
+            color: #e5e7eb;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2563eb, #0f172a);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        .top-bar {
+            max-width: 1100px;
+            margin: 25px auto;
+            display: flex;
+            gap: 15px;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar input,
+        .top-bar button {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .top-bar input {
+            flex: 1;
+            border: 1px solid #cbd5e1;
+        }
+
+        .top-bar button {
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .progress-box {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 20px;
+        }
+
+        .progress-text {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 18px;
+            background: #dbeafe;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #2563eb;
+            transition: 0.4s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .step {
+            background: white;
+            margin-bottom: 22px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #2563eb;
+        }
+
+        body.dark .step {
+            background: #1e293b;
+        }
+
+        .step h2 {
+            color: #2563eb;
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .check-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .check-row input {
+            width: 18px;
+            height: 18px;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 12px;
+            position: relative;
+        }
+
+        .copy-btn {
+            margin-top: 8px;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            cursor: pointer;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .mini-card {
+            background: #eff6ff;
+            padding: 18px;
+            border-radius: 14px;
+            font-weight: bold;
+            text-align: center;
+            color: #1d4ed8;
+        }
+
+        body.dark .mini-card {
+            background: #334155;
+            color: #93c5fd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #0f172a;
+            color: white;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 30px;
+            }
+
+            .step {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📊 Data Analytics Project Roadmap</h1>
+        <p>From Dataset to Dashboard using Google Colab, Python, Pandas, Matplotlib, Seaborn & Power BI</p>
+    </header>
+
+    <div class="top-bar">
+        <input type="text" id="searchInput" placeholder="Search roadmap step...">
+        <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+
+    <div class="progress-box">
+        <div class="progress-text">Progress: <span id="progressValue">0%</span></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 1 Completed</span>
+            </div>
+            <h2>1. Select Dataset</h2>
+            <p>First choose one dataset for your data analytics project.</p>
+            <ul>
+                <li>Kaggle Dataset</li>
+                <li>GitHub Dataset</li>
+                <li>Google Dataset Search</li>
+                <li>CSV / Excel Dataset</li>
+            </ul>
+            <p><b>Best project ideas:</b> Netflix Analysis, IPL Analysis, Sales Dashboard, HR Analytics, Zomato
+                Analysis, Used Cars Analysis.</p>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 2 Completed</span>
+            </div>
+            <h2>2. Upload Dataset in Google Colab</h2>
+            <p>Upload your CSV file in Google Colab.</p>
+            <pre><code>from google.colab import files
+uploaded = files.upload()</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 3 Completed</span>
+            </div>
+            <h2>3. Import Required Libraries</h2>
+            <p>Use Python libraries for data cleaning, analysis, and visualization.</p>
+            <pre><code>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 4 Completed</span>
+            </div>
+            <h2>4. Read Dataset</h2>
+            <p>Read your CSV dataset using Pandas.</p>
+            <pre><code>df = pd.read_csv("dataset.csv")
+df.head()</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 5 Completed</span>
+            </div>
+            <h2>5. Understand Dataset</h2>
+            <p>Check rows, columns, data types, and summary statistics.</p>
+            <pre><code>df.shape
+df.info()
+df.describe()
+df.columns
+df.dtypes</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 6 Completed</span>
+            </div>
+            <h2>6. Check Missing Values</h2>
+            <p>Find null values and missing percentage.</p>
+            <pre><code>df.isnull().sum()
+
+missing_percent = df.isnull().sum() / len(df) * 100
+missing_percent</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 7 Completed</span>
+            </div>
+            <h2>7. Handle Missing Values</h2>
+            <p>Clean missing data using drop, mean, median, or mode.</p>
+            <pre><code># Drop all missing rows
+df = df.dropna()
+
+# Fill numeric missing value with mean
+df['price'] = df['price'].fillna(df['price'].mean())
+
+# Fill categorical missing value with mode
+df['category'] = df['category'].fillna(df['category'].mode()[0])</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 8 Completed</span>
+            </div>
+            <h2>8. Check Duplicate Values</h2>
+            <p>Find and remove duplicate records.</p>
+            <pre><code>df.duplicated().sum()
+df = df.drop_duplicates()</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 9 Completed</span>
+            </div>
+            <h2>9. Rename Columns</h2>
+            <p>Make column names clean and simple.</p>
+            <pre><code>df.columns = df.columns.str.lower()
+df.columns = df.columns.str.replace(" ", "_")</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 10 Completed</span>
+            </div>
+            <h2>10. Change Data Types</h2>
+            <p>Convert date, price, sales, and numeric columns properly.</p>
+            <pre><code>df['date'] = pd.to_datetime(df['date'])
+df['price'] = df['price'].astype(float)</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 11 Completed</span>
+            </div>
+            <h2>11. Exploratory Data Analysis</h2>
+            <p>Find insights from your dataset.</p>
+            <pre><code>df['category'].value_counts()
+
+df.groupby('category')['sales'].sum()
+
+df.sort_values(by='sales', ascending=False).head(10)</code></pre>
+            <button class="copy-btn">Copy Code</button>
+
+            <div class="dashboard-grid">
+                <div class="mini-card">Total Records</div>
+                <div class="mini-card">Average Sales</div>
+                <div class="mini-card">Top Category</div>
+                <div class="mini-card">Highest Value</div>
+            </div>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 12 Completed</span>
+            </div>
+            <h2>12. Visualization using Matplotlib</h2>
+            <p>Create bar chart, line chart, and pie chart.</p>
+            <pre><code>plt.figure(figsize=(8,5))
+plt.bar(df['category'], df['sales'])
+plt.xlabel("Category")
+plt.ylabel("Sales")
+plt.title("Category Wise Sales")
+plt.xticks(rotation=45)
+plt.show()</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 13 Completed</span>
+            </div>
+            <h2>13. Visualization using Seaborn</h2>
+            <p>Use Seaborn for professional charts.</p>
+            <pre><code>sns.countplot(data=df, x='category')
+plt.title("Category Count")
+plt.xticks(rotation=45)
+plt.show()
+
+sns.heatmap(df.corr(numeric_only=True), annot=True)
+plt.title("Correlation Heatmap")
+plt.show()</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 14 Completed</span>
+            </div>
+            <h2>14. Export Clean Dataset</h2>
+            <p>After cleaning, export your dataset for Power BI.</p>
+            <pre><code>df.to_csv("cleaned_dataset.csv", index=False)</code></pre>
+            <button class="copy-btn">Copy Code</button>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 15 Completed</span>
+            </div>
+            <h2>15. Power BI Dashboard</h2>
+            <p>Import cleaned CSV file into Power BI and create dashboard.</p>
+            <ul>
+                <li>KPI Cards: Total Sales, Total Records, Average Sales</li>
+                <li>Bar Chart: Category-wise Sales</li>
+                <li>Line Chart: Monthly Trend</li>
+                <li>Pie Chart: Region-wise Sales</li>
+                <li>Slicers: Category, Date, Region</li>
+            </ul>
+        </section>
+
+        <section class="step">
+            <div class="check-row">
+                <input type="checkbox" class="step-check">
+                <span>Step 16 Completed</span>
+            </div>
+            <h2>16. Final Project Documentation</h2>
+            <p>Create a final report for your project.</p>
+            <ul>
+                <li>Problem Statement</li>
+                <li>Dataset Description</li>
+                <li>Tools Used</li>
+                <li>Data Cleaning Steps</li>
+                <li>EDA Insights</li>
+                <li>Power BI Dashboard Screenshot</li>
+                <li>Conclusion</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>🚀 Data Analytics Project Roadmap | Created for Beginners</p>
+        <br>Developed By Sufal Basak</br>
+    </footer>
+
+    <script>
+        const checks = document.querySelectorAll(".step-check");
+        const progressFill = document.getElementById("progressFill");
+        const progressValue = document.getElementById("progressValue");
+
+        checks.forEach(check => {
+            check.addEventListener("change", updateProgress);
+        });
+
+        function updateProgress() {
+            const total = checks.length;
+            const completed = document.querySelectorAll(".step-check:checked").length;
+            const percent = Math.round((completed / total) * 100);
+
+            progressFill.style.width = percent + "%";
+            progressValue.innerText = percent + "%";
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+        }
+
+        const copyButtons = document.querySelectorAll(".copy-btn");
+
+        copyButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const code = button.previousElementSibling.innerText;
+                navigator.clipboard.writeText(code);
+                button.innerText = "Copied!";
+                setTimeout(() => {
+                    button.innerText = "Copy Code";
+                }, 1500);
+            });
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        const steps = document.querySelectorAll(".step");
+
+        searchInput.addEventListener("input", () => {
+            const value = searchInput.value.toLowerCase();
+
+            steps.forEach(step => {
+                const text = step.innerText.toLowerCase();
+
+                if (text.includes(value)) {
+                    step.style.display = "block";
+                } else {
+                    step.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

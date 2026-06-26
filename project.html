@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>30 Days Data Analytics Project Calendar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f5f7ff;
+            color: #111827;
+        }
+
+        body.dark {
+            background: #0f172a;
+            color: #e5e7eb;
+        }
+
+        header {
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        .stats {
+            max-width: 1200px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            text-align: center;
+        }
+
+        body.dark .stat-card,
+        body.dark .project-card,
+        body.dark .week-box {
+            background: #1e293b;
+        }
+
+        .stat-card h2 {
+            color: #2563eb;
+            font-size: 30px;
+        }
+
+        .toolbar {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .toolbar input,
+        .toolbar select,
+        .toolbar button {
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .toolbar input {
+            flex: 1;
+        }
+
+        .toolbar button {
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        .progress-area {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .progress-text {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 18px;
+            background: #dbeafe;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            transition: .4s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .week-box {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
+        }
+
+        .week-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .week-1 {
+            border-left: 8px solid #2563eb;
+        }
+
+        .week-2 {
+            border-left: 8px solid #7c3aed;
+        }
+
+        .week-3 {
+            border-left: 8px solid #f97316;
+        }
+
+        .week-4 {
+            border-left: 8px solid #16a34a;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+            transition: .3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 6px 10px;
+            border-radius: 30px;
+            font-size: 13px;
+            margin: 5px 5px 10px 0;
+        }
+
+        .details {
+            line-height: 1.7;
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .btn.dataset {
+            background: #16a34a;
+        }
+
+        .btn.playlist {
+            background: #f97316;
+        }
+
+        .complete {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .complete input {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .portfolio {
+            background: linear-gradient(135deg, #0f172a, #2563eb);
+            color: white;
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .portfolio h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #0f172a;
+            color: white;
+        }
+
+        @media(max-width:600px) {
+            header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>📅 30 Days Data Analytics Project Roadmap</h1>
+        <p>Excel • Python • Pandas • Matplotlib • Seaborn • Power BI</p>
+    </header>
+
+    <section class="stats">
+        <div class="stat-card">
+            <h2>7</h2>
+            <p>Total Projects</p>
+        </div>
+        <div class="stat-card">
+            <h2>30</h2>
+            <p>Days Roadmap</p>
+        </div>
+        <div class="stat-card">
+            <h2>8+</h2>
+            <p>Tools Covered</p>
+        </div>
+        <div class="stat-card">
+            <h2 id="doneCount">0%</h2>
+            <p>Progress</p>
+        </div>
+    </section>
+
+    <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="Search project...">
+        <select id="filterTech">
+            <option value="all">All Tools</option>
+            <option value="excel">Excel</option>
+            <option value="python">Python</option>
+            <option value="visualization">Visualization</option>
+            <option value="powerbi">Power BI</option>
+        </select>
+        <button onclick="toggleDark()">🌙 Dark Mode</button>
+        <button onclick="window.print()">🖨 Print</button>
+    </div>
+
+    <div class="progress-area">
+        <div class="progress-text">Overall Progress: <span id="progressText">0%</span></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <section class="week-box week-1">
+            <h2 class="week-title">Week 1: Excel Project</h2>
+
+            <div class="projects">
+                <div class="project-card" data-tech="excel">
+                    <h3>📊 Excel Sales Dashboard</h3>
+                    <span class="badge">Week 1</span>
+                    <span class="badge">7 Days</span>
+                    <span class="badge">Beginner</span>
+
+                    <p class="details">
+                        Learn Excel cleaning, formatting, Pivot Table, Pivot Chart, KPI cards, slicers,
+                        conditional formatting and dashboard design.
+                    </p>
+
+                    <p><b>Deliverables:</b> Clean Excel file, KPI cards, final sales dashboard.</p>
+
+                    <div class="btn-group">
+                        <a class="btn" href="https://youtu.be/Wom-eVrE4RY?si=Rk-iZ4wXqUFJUXL0" target="_blank">▶
+                            YouTube</a>
+                        <a class="btn dataset" href="https://www.kaggle.com/datasets/kyanyoga/sample-sales-data"
+                            target="_blank">📁 Dataset</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="week-box week-2">
+            <h2 class="week-title">Week 2: Python Data Analytics Projects</h2>
+
+            <div class="projects">
+
+                <div class="project-card" data-tech="python">
+                    <h3>🏠 Airbnb Data Cleaning</h3>
+                    <span class="badge">Week 2</span>
+                    <span class="badge">3 Days</span>
+                    <span class="badge">Pandas</span>
+
+                    <p class="details">
+                        Practice data cleaning using Python, NumPy and Pandas. Work on missing values,
+                        duplicates, data types, null values and outliers.
+                    </p>
+
+                    <div class="btn-group">
+                        <a class="btn" href="https://youtu.be/I7DZP4rVQOU?si=J0JSTCy5hqHlbsYe" target="_blank">▶
+                            YouTube</a>
+                        <a class="btn dataset" href="https://www.kaggle.com/datasets/arianazmoudeh/airbnbopendata"
+                            target="_blank">📁 Dataset</a>
+                        <a class="btn playlist"
+                            href="https://youtube.com/playlist?list=PLTsu3dft3CWhOUPyXdLw8DGy_1l2oK1yy&si=wfQjPbUgVcOIWa4p"
+                            target="_blank">📺 Cleaning Playlist</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+
+                <div class="project-card" data-tech="python">
+                    <h3>🎬 Netflix Data Analysis</h3>
+                    <span class="badge">Week 2</span>
+                    <span class="badge">4 Days</span>
+                    <span class="badge">EDA</span>
+
+                    <p class="details">
+                        Analyze Netflix shows dataset using Pandas. Learn groupby, value counts,
+                        filtering, cleaning, aggregation and trend analysis.
+                    </p>
+
+                    <div class="btn-group">
+                        <a class="btn" href="https://youtu.be/cvR4rMIqVCQ?si=7uQStLThi04gJ-Cm" target="_blank">▶
+                            YouTube</a>
+                        <a class="btn dataset" href="https://www.kaggle.com/datasets/shivamb/netflix-shows"
+                            target="_blank">📁 Dataset</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="week-box week-3">
+            <h2 class="week-title">Week 3: Visualization Projects</h2>
+
+            <div class="projects">
+
+                <div class="project-card" data-tech="visualization">
+                    <h3>📈 Retail Sales Visualization</h3>
+                    <span class="badge">Week 3</span>
+                    <span class="badge">Matplotlib</span>
+
+                    <p class="details">
+                        Create bar chart, line chart, pie chart, histogram, box plot and scatter plot
+                        using Matplotlib.
+                    </p>
+
+                    <div class="btn-group">
+                        <a class="btn" href="https://youtu.be/-jTD74eEy2I?si=lAndI4JWmb7Hy68W" target="_blank">▶
+                            YouTube</a>
+                        <a class="btn dataset" href="https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting"
+                            target="_blank">📁 Dataset</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+
+                <div class="project-card" data-tech="visualization">
+                    <h3>🎧 Spotify Visualization</h3>
+                    <span class="badge">Week 3</span>
+                    <span class="badge">Seaborn</span>
+
+                    <p class="details">
+                        Create countplot, heatmap, pairplot, distribution plot and correlation matrix
+                        using Seaborn.
+                    </p>
+
+                    <div class="btn-group">
+                        <a class="btn dataset"
+                            href="https://www.kaggle.com/datasets/zaheenhamidani/ultimate-spotify-tracks-db"
+                            target="_blank">📁 Dataset</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="week-box week-4">
+            <h2 class="week-title">Week 4: Power BI Projects</h2>
+
+            <div class="projects">
+
+                <div class="project-card" data-tech="powerbi">
+                    <h3>📊 Business Sales Power BI Dashboard</h3>
+                    <span class="badge">Week 4</span>
+                    <span class="badge">Power BI</span>
+
+                    <p class="details">
+                        Build dashboard using Power Query, DAX, KPI cards, slicers, bar chart,
+                        line chart and interactive filters.
+                    </p>
+
+                    <div class="btn-group">
+                        <a class="btn" href="https://youtu.be/mmxVCFceQgU?si=1Afnmbtd718kApkh" target="_blank">▶
+                            YouTube</a>
+                        <a class="btn dataset" href="https://www.kaggle.com/datasets/kyanyoga/sample-sales-data"
+                            target="_blank">📁 Dataset</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+
+                <div class="project-card" data-tech="powerbi">
+                    <h3>🚕 Uber Power BI Dashboard</h3>
+                    <span class="badge">Week 4</span>
+                    <span class="badge">Advanced</span>
+
+                    <p class="details">
+                        Create Uber dashboard with total trips, revenue, pickup time, monthly trend,
+                        city analysis and interactive filters.
+                    </p>
+
+                    <div class="btn-group">
+                        <a class="btn dataset" href="https://www.kaggle.com/datasets/yasserh/uber-fares-dataset"
+                            target="_blank">📁 Dataset</a>
+                    </div>
+
+                    <label class="complete">
+                        <input type="checkbox" class="check"> Completed
+                    </label>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="portfolio">
+            <h2>🎉 Final Portfolio Output</h2>
+            <p>
+                After 30 days, you will have Excel Dashboard, Airbnb Cleaning Project,
+                Netflix Analysis, Retail Visualization, Spotify Visualization,
+                Business Power BI Dashboard and Uber Dashboard.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        Built for Aspiring Data Analysts | 30 Days • 7 Projects • Portfolio Ready
+        <br>Developed by Sufal Basak</br>
+    </footer>
+
+    <script>
+        const checks = document.querySelectorAll(".check");
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const doneCount = document.getElementById("doneCount");
+
+        checks.forEach(check => {
+            check.addEventListener("change", updateProgress);
+        });
+
+        function updateProgress() {
+            const total = checks.length;
+            const completed = document.querySelectorAll(".check:checked").length;
+            const percent = Math.round((completed / total) * 100);
+
+            progressFill.style.width = percent + "%";
+            progressText.innerText = percent + "%";
+            doneCount.innerText = percent + "%";
+        }
+
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        const filterTech = document.getElementById("filterTech");
+        const cards = document.querySelectorAll(".project-card");
+
+        searchInput.addEventListener("input", filterProjects);
+        filterTech.addEventListener("change", filterProjects);
+
+        function filterProjects() {
+            const searchValue = searchInput.value.toLowerCase();
+            const techValue = filterTech.value;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                const tech = card.getAttribute("data-tech");
+
+                const searchMatch = text.includes(searchValue);
+                const techMatch = techValue === "all" || tech === techValue;
+
+                if (searchMatch && techMatch) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
